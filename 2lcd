@@ -1,0 +1,9 @@
+
+echo -e "*** Switching Display Mode to LCD"
+echo -e "Replacing files"
+sudo cp -rf /home/pi/DVK512/LCD-show/etc/modules-35  /etc/modules
+sudo cp -rf /home/pi/DVK512/LCD-show/etc/X11/xorg.conf.d/99-calibration.conf-35  /etc/X11/xorg.conf.d/99-calibration.conf
+sudo cp -rf /home/pi/DVK512/LCD-show/usr/share/X11/xorg.conf.d/99-fbturbo.conf  /usr/share/X11/xorg.conf.d/
+
+echo -e "Changes will take place after reboot"
+#sudo reboot
