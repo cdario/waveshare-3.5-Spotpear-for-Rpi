@@ -1,0 +1,3 @@
+sudo cp -rf /home/pi/DVK512/LCD-show/etc/modules-HDMI  /etc/modules
+sudo cp -rf /home/pi/DVK512/LCD-show/usr/share/X11/xorg.conf.d/99-fbturbo.conf-HDMI  /usr/share/X11/xorg.conf.d/99-fbturbo.conf
+sudo reboot

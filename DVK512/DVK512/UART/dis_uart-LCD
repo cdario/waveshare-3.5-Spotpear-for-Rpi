@@ -1,0 +1,5 @@
+sudo rm /boot/cmdline.txt
+sudo cp /home/pi/DVK512/UART/cmdline.txt-dis /boot/cmdline.txt
+sudo rm /etc/inittab
+sudo cp /home/pi/DVK512/UART/inittab-DIS_UART /etc/inittab
+sudo reboot
