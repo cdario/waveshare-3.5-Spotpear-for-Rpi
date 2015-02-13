@@ -1,0 +1,14 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+requires=libfakekey xft xrender libpng
+extralibs= -lexpat
+extracflags= 
+
+Name: libmatchbox-keyboard
+Description: Matchbox Keyboard Widget
+Version: 0.2
+Libs: ${extralibs} -L${libdir} -lmatchbox-keyboard
+Cflags: ${extracflags} -I${includedir}/libmatchbox-keyboard
+Requires: ${requires}
