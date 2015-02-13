@@ -1,0 +1,2 @@
+LSM303:LSM303.o
+	gcc LSM303.c -o LSM303 -lbcm2835 -lm

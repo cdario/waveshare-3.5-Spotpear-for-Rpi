@@ -1,0 +1,39 @@
+    #include <bcm2835.h>  
+    #include <stdio.h>
+    #include <unistd.h>
+    unsigned char WriteBuf;  
+    unsigned char ReadBuf,ReadBuf1,i;  
+    unsigned char b[]={0x40,0x00} ,data;
+
+    int main(int argc, char **argv)  
+    {  
+        if (!bcm2835_init())  
+        return 1;  
+        bcm2835_i2c_begin();  
+        bcm2835_i2c_setSlaveAddress(0x48);  
+        bcm2835_i2c_set_baudrate(10000);  
+        printf("start..........\n"); 
+
+        while(1)  
+        {  
+        
+         b[1]=b[1]+10;
+         bcm2835_i2c_write(&b,2);
+/*
+	       WriteBuf = 0x03;  
+         bcm2835_i2c_write_read_rs( &WriteBuf ,1, &ReadBuf,1);  
+  	     bcm2835_i2c_read (&ReadBuf,1); 
+*/
+
+	       printf("DAC-OUTPUT: %d \n",b[1]);
+
+            bcm2835_delay(50);  
+
+
+        }  
+         
+        bcm2835_i2c_end();  
+        bcm2835_close();  
+      
+        return 0;  
+    }  

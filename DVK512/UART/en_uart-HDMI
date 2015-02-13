@@ -1,0 +1,5 @@
+rm /boot/cmdline.txt
+cp /home/pi/DVK512/UART/cmdline-HDMI-EN_UART.txt /boot/cmdline.txt
+rm /etc/inittab
+cp /home/pi/DVK512/UART/inittab-EN_UART /etc/inittab
+sudo reboot

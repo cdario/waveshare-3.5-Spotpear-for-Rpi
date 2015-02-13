@@ -1,0 +1,5 @@
+udo rm /boot/cmdline.txt
+sudo cp /home/pi/DVK512/UART/cmdline.txt-en /boot/cmdline.txt
+rm /etc/inittab
+cp /home/pi/DVK512/UART/inittab-EN_UART /etc/inittab
+sudo reboot
