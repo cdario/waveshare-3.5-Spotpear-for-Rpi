@@ -49,29 +49,27 @@ fbtft_device debug=3 rotate=90 name=flexfb speed=16000000 gpios=reset:25,dc:24
 7.Additional settings
 
 ```
-#config.txt
+#/boot/config.txt
 gpu_mem=128
 
-#cmdline.txt
+#/boot/cmdline.txt
 fbcon=map:1 fbcon=font:ProFont6x11
 
 ```
 
 
-## LCD Touchscreen support
+## Enabling touchscreen
+
 
 1. Install libraries
 
 ```
 sudo apt-get -y install xinput evtest libts-bin
-
+```
 
 2. Add device to /etc/modules
 
 ```
-
-## Enabling touchscreen
-
 ads7846_device model=7846 cs=1 gpio_pendown=17  keep_vref_on=1 swap_xy=0 pressure_max=255 x_plate_ohms=60 x_min=200  x_max=3900 y_min=200 y_max=3900
 
 ```
@@ -93,9 +91,11 @@ After reboot type `startx` and open `xterminal` then run the calibration tool
 
 ```
 DISPLAY=:0.0 xinput_calibrator
+```
 
-#edit 99-calibration using the new parameters, e.g.
+Edit 99-calibration using the new parameters, e.g.
 
+```
 Section "InputClass"
 	Identifier "calibration"
 	MatchProduct "ADS7846 Touchscreen"
@@ -118,14 +118,7 @@ keyboard_0.1+svn20080916-9+b1_armhf.deb
 
 2. Create a toogle script to avoid multiple instances
 
-
-
 ```
-$ sudo nano /usr/bin/toggle-matchbox-keyboard.sh
-```
-
-```
-
 #!/bin/bash
 
 PID=$(pidof matchbox-keyboard)
@@ -137,22 +130,19 @@ fi
 
 ```
 
+
 ```
 $ sudo chmod +x /usr/bin/toggle-matchbox-keyboard.sh
 ```
 
-
-
+_buggy in Openbox_
 
 
 ## Additional stuff
 
-1. Auto-login: comment out and add line
-
+1. Auto-login: edit `$ sudo nano /etc/inittab` as shown
 
 ```
-$ sudo nano /etc/inittab
-
 #1:2345:respawn:/sbin/getty --noclear 38400 tty1
 1:2345:respawn:/bin/login -f pi tty </dev/tty1 >/dev/tty1 2>&1
 
@@ -161,11 +151,7 @@ $ sudo nano /etc/inittab
 
 2. Startx by default
 
-``` 
-
-$ sudo nano /etc/rc.local 
-
-#add the following line before exit 0
+Add the following lines before `exit 0` in `/etc/rc.local `
 
 
 ```
@@ -184,5 +170,7 @@ fi
 ### Sources :
 
 [1] https://github.com/notro/fbtft/issues/215
+
 [2] http://ozzmaker.com/2014/06/30/virtual-keyboard-for-the-raspberry-pi/
+
 [3] http://www.raspberrypi.org/forums/viewtopic.php?f=66&t=14719
